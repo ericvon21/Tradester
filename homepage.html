@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+        <style>
+            body{
+               /*background: #ff5353;*/
+               /* background: url("darkness.png");*/
+                background-image: url("Background.jpg");
+                 background-color: #cccccc;
+                font-family: arial;
+                margin: 0;
+            }
+            nav{
+                background: #262626;
+               /* background: url(darkness.png);*/
+                padding: 20px 10px;
+            }
+            nav ul{
+                max-width: 960px;
+                margin: 0 auto;
+                padding: 0;
+            }
+            nav li{
+                list-style-type: none;
+                display: inline-block;
+                margin: 0 10px 0 0;
+            }
+            nav a{
+                color: #fff;
+                font-size: 18px;
+                background: rgba(255,255,255,0.2);
+                text-decoration: none;
+                padding: 10px;
+                display: block;
+            }
+            main, header{
+                max-width: 960px;
+                margin: 30px auto;
+                padding: 0 10px;
+                color: #333;
+            }
+            .google-btn{
+                color: #fff;
+                text-decoration: none;
+                font-size: 18px;
+                padding: 10px;
+                background: #ff5353;
+            }
+              .facebook-btn{
+                color: #fff;
+                text-decoration: none;
+                font-size: 18px;
+                padding: 10px;
+                background: #003366;
+            }
+              .footer{ 
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: blue;
+                color: white;
+                text-align: center;
+            }  
+
+
+        </style>
+    </head>
+    <body>
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">
+                    <img src="TradesterLogo.png" width="200" height="200" align="left" id="html_css_js">
+                        </a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/">Homepage</a></li>
+            </ul>
+        </nav>
+        <header>
+            <h1>Login using...</h1>
+        </header>
+        <main>
+            <a class href="/auth/google">
+        <img src="GoogleLogin.png" width="300" height="55" id="html_css_js">
+            </a>
+        </main>
+        <main>
+            <a class href="/auth/facebook">
+         <img src="FacebookLogin.png" width="300" height="50" id="html_css_js">
+            </a>
+        </main>
+    </body>
+      <a class="footer">
+        <p>Tradester 2018</p>
+        </a>
+</html>
