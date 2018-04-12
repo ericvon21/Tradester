@@ -13,7 +13,7 @@
                 margin: 0;
             }
             nav{
-                background: #262626;
+                background: #000000;
                /* background: url(darkness.png);*/
                 padding: 20px 10px;
             }
@@ -28,7 +28,7 @@
                 margin: 0 10px 0 0;
             }
             nav a{
-                color: #fff;
+                color: #000000;
                 font-size: 18px;
                 background: rgba(255,255,255,0.2);
                 text-decoration: none;
@@ -39,7 +39,7 @@
                 max-width: 960px;
                 margin: 30px auto;
                 padding: 0 10px;
-                color: #333;
+                color: #000000;
             }
             .google-btn{
                 color: #fff;
@@ -73,6 +73,10 @@
                 color: white;
                 text-align: center;
              }
+               .logo{
+                text-decoration: none;
+
+               }
 
 
 
@@ -81,19 +85,12 @@
     <body>
 
         <nav>
-            <ul>
-                <li>
-                    <a class="header" href="/">
-                    <img src="TradesterLogo.png" width="200" height="200" align="left" id="html_css_js">
-                        </a></li>
-                <li><a href="/auth/logout">Logout</a></li>
-                <li><a href="/auth/login">Login</a></li>
-                <li><a href="/">Homepage</a></li>
-            </ul>
+           <li>
+            <div class="logo" href="/">       
+                <img src="TradesterLogo.png" width="150" height="150" align="left" align="top" id="html_css_js">
+         </div></li>    
         </nav>
-        <header>
-            <h1>Login using...</h1>
-        </header>
+        
         <main>
             <a class href="/auth/google">
         <img src="GoogleLogin.png" width="300" height="55" id="html_css_js">
