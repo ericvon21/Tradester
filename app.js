@@ -1,6 +1,8 @@
 const express = require('express');
 const authRoutes = require('./routes/auth-routes');
+var path = require('path');
 const app = express();
+app.use(express.static(path.join(__dirname, '')));
 //const passportSetup=require('./config/passport-setup');
 
 // set view engine
@@ -13,7 +15,6 @@ app.use('/auth', authRoutes);
 app.get('/',function (req, res) {
     res.render('home');
 });
-
 
 app.listen(3000);
 console.log('app now listening for requests on port 3000');
