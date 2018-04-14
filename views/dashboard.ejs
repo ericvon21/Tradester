@@ -195,18 +195,8 @@ button:hover {
     position: relative;
 }
 
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
-}
-
 .container {
     padding: 16px;
-}
-
-span.psw {
-    float: right;
-    padding-top: 16px;
 }
 
 /* The Modal (background) */
@@ -284,7 +274,7 @@ span.psw {
 }
 
 .zoom:hover {
-    transform: scale(5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(6); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 </style>
@@ -294,7 +284,7 @@ span.psw {
 <div class="header">
   <a href="#default" class="logo">
   	<li>
-  	<img src="TradesterLogo.png" style= "width:125px; height:125px; border:0" id="html_css_js">
+  	<img src="./TradesterLogo.png" style= "width:125px; height:125px; border:0" id="html_css_js">
   	<img src="Notification.png" style= "top:0px; right:100px; width:50px; height:50px; border:0" id="html_css_js">
     <a href="#contact">Contact</a>
   	
@@ -323,7 +313,7 @@ span.psw {
                 <input type="text" placeholder="Enter items name" name="item_name" >
 
                 <label for="description" ><b>Item's Description</b></label><br>
-                <textarea class="input" style="font-family:sans-serif; width: 100%;padding: 12px 20px;margin: 8px 0;display: inline-block;border: 1px solid #ccc;box-sizing: border-box;" placeholder="Enter Description" rows="10%" cols="160%" id="suggested" name="description"></textarea><br>
+                <textarea class="input" style="font-family:sans-serif; width: 100%;padding: 12px 20px;margin: 8px 0;display: inline-block;border: 1px solid #ccc;box-sizing: border-box;resize: none" placeholder="Enter Description" rows="10%" cols="160%" id="suggested" name="description"></textarea><br>
 
                 <button type="submit">Add Item</button>
                 <button type="button" style="float:right;" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
