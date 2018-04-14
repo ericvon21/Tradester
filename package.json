@@ -18,10 +18,13 @@
   },
   "homepage": "https://github.com/krishna314/Tradester#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0",
     "cors": "^2.8.4",
     "ejs": "^2.5.8",
     "express": "^4.16.3",
+    "express-fileupload": "^0.4.0",
+    "file-upload": "0.0.0",
     "mysql": "^2.15.0",
     "nodemon": "^1.17.3",
     "passport": "^0.4.0",
