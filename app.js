@@ -5,6 +5,7 @@ var passportSetup=require('./config/passport-setup');
 var fileUpload = require('express-fileupload');
 var bodyParser = require('body-parser');
 var path = require('path');
+var random = require('random-int')
 
 // set view engine
 app.set('view engine', 'ejs');
@@ -15,7 +16,15 @@ app.use('/auth', authRoutes);
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '')));
+app.use( express.static( "Public" ) );
 app.use(fileUpload());
+
+var suggestions = ["Did you know that now you can trade items with your friends?",
+                    "Wish List is now available",
+                    "Add Items to your wish list and keep track of what you need",
+                    "Want to trade something? Get started by Adding an Item",
+                    "Tradester now allows pictures for trading objects",
+                    "Be on the lookout for more updates soon to come"];
 
 
 // create home route
@@ -27,6 +36,12 @@ app.get('/dashboard', function (req,res){
     res.render('dashboard');
 });
 
+app.get('/new',function(req,res){
+    var random_suggestion_num = random(suggestions.length-1);
+
+
+   res.render('Pages/newdashboard',{suggestion:suggestions[random_suggestion_num]});
+});
 
 app.post('/action_page.php',function(req,res){
     var item_name = req.body.item_name;
