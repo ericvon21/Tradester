@@ -34,5 +34,6 @@
     "random": "^1.0.0-beta-1",
     "random-int": "^1.0.0"
   }
-
+  },
+  "devDependencies": {}
 }
