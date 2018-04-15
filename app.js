@@ -20,7 +20,7 @@ app.use(fileUpload());
 
 // create home route
 app.get('/',function (req, res) {
-    res.render('home');
+    res.render('homepage');
 });
 
 app.get('/dashboard', function (req,res){
