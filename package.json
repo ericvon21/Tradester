@@ -31,9 +31,13 @@
     "passport-facebook": "^2.1.1",
     "passport-google-oauth2": "^0.1.6",
     "passport-google-oauth20": "^1.0.0",
+<<<<<<< Updated upstream
     "random": "^1.0.0-beta-1",
     "random-int": "^1.0.0"
   }
+=======
+    "random-int": "^1.0.0"
+>>>>>>> Stashed changes
   },
   "devDependencies": {}
 }
