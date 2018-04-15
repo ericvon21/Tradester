@@ -1,14 +1,14 @@
-const express = require('express');
-const authRoutes = require('./routes/auth-routes');
-const app = express();
-const passportSetup=require('./config/passport-setup');
+var express = require('express');
+var authRoutes = require('./routes/auth-routes');
+var app = express();
+var passportSetup=require('./config/passport-setup');
 var fileUpload = require('express-fileupload');
 var bodyParser = require('body-parser');
 var path = require('path');
 
-
 // set view engine
 app.set('view engine', 'ejs');
+
 
 // set up routes
 app.use('/auth', authRoutes);
