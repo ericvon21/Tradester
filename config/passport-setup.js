@@ -3,6 +3,32 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 var db = require('../tables/db');
 var key=require('../config/key.js')
+
+
+
+
+passport.serializeUser((user, done) => {
+  //console.log('In searizlize  '+ user.email);
+  //   done(null, user.email);
+  done(null,user);
+});
+
+passport.deserializeUser((user, done) => {
+    //  console.log('In desearizlize  '+ Object.values(email));
+    // var sql_select='SELECT * from users where email=\''+email+'\'';
+    // db.query(sql_select, function (err, result) {
+    //     if(err)
+    //       console.log('couldnt find user');
+    //     console.log('desiralize res= '+result);
+    //     done(null,result);
+    // })
+   // done(null,user);
+
+   done(null,user);
+});
+
+
+
 passport.use(
     new GoogleStrategy({
       //var add_user=''
@@ -12,16 +38,39 @@ passport.use(
     }, (accessToken,refreshToken,profile, done) => {
         console.log("heloo");
         console.log(profile);
+        var sql_select='SELECT * from users where email=\''+profile.emails[0].value+'\'';
         var sql_insert='INSERT into users(email,fname,lname,profile_pic_url) VALUES (\''+profile.emails[0].value+'\',\''
         +profile.name.familyName+'\',\''+profile.name.givenName+'\',\''+profile.photos[0].value+'\')';
-       db.query(sql_insert, function (err, result) {
-    if (err){
-     // console.log(err);
-      console.log('value exists')
-    }
-    else
-      console.log("record inserted");
-      });
+db.query(sql_select,function(err,user){
+      if(err){
+          console.log('user doesnt exist');
+          db.query(sql_insert, function (err, result) {
+          var newUser = new Object();
+          if (err){
+           // console.log(err);
+           console.log('error inserting');
+           return done(null,false);
+            
+          }
+          else{
+             newUser.email = result.email;
+             newUser.fname = result.fname;
+             newUser.lname = result.lname;
+             newUser.profile_pic_url = result.profile_pic_url;
+             return done(null,newUser);
+            console.log("record inserted");
+            // return done(null)
+          }
+        });
+      }
+      else{
+         console.log('user exists');
+          console.log(user);
+         return done(null,user[0]);
+      }
+     
+});
+     
         // passport callback function
     })
 );

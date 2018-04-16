@@ -10,6 +10,8 @@ router.get('/login', function (req, res) {
 // auth logout
 router.get('/logout', function(req, res) {
     // handle with passport
+    req.logout();
+    res.redirect('/');
     res.send('logging out');
 });
 
@@ -23,9 +25,12 @@ router.get('/google',passport.authenticate('google',{
 // hand control to passport to use code to grab profile info
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
 
-
-    res.send('you reached the redirect URI');
-    res.render('dashboard',)
+	// console.log('in redirect URI');
+ //    //res.send('you reached the redirect URI');
+ //    res.render('Pages/newdashboard');
+ console.log("=========IN GOOGLE REDIRECT=========\n");
+ 	console.log(req.user.email);
+ 	res.redirect('/profile');
 });
 
 router.get('/facebook',

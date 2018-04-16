@@ -6,6 +6,22 @@ var fileUpload = require('express-fileupload');
 var bodyParser = require('body-parser');
 var path = require('path');
 var random = require('random-int')
+const cookieSession = require('cookie-session');
+const passport=require('passport');
+
+
+
+
+app.use(cookieSession({
+	maxAge:24*60*60*60,
+	keys:['abc']
+}));
+
+
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // set view engine
 app.set('view engine', 'ejs');
@@ -29,14 +45,21 @@ var suggestions = ["Did you know that now you can trade items with your friends?
 
 // create home route
 app.get('/',function (req, res) {
-    res.render('homepage');
+	if(req.user)
+		res.redirect('/profile');
+	else
+    	res.render('homepage');
 });
 
 app.get('/dashboard', function (req,res){
     res.render('dashboard');
 });
 
-app.get('/new',function(req,res){
+app.get('/profile',function(req,res){
+	//console.log("profile user="+Object.values(req.user));
+	if(!req.user){
+		res.redirect('/');
+	}
     var random_suggestion_num = random(suggestions.length-1);
 
 
