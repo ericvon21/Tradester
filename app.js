@@ -63,7 +63,7 @@ app.get('/profile',function(req,res){
     var random_suggestion_num = random(suggestions.length-1);
 
 
-   res.render('Pages/newdashboard',{suggestion:suggestions[random_suggestion_num]});
+   res.render('Pages/newdashboard',{suggestion:suggestions[random_suggestion_num],user:req.user});
 });
 
 app.post('/action_page.php',function(req,res){

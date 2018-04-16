@@ -218,7 +218,7 @@ output.src = URL.createObjectURL(event.target.files[0]);
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
         <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
            href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-        <a href="/new" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i
+        <a href="/profile" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i
                     class="fa fa-home w3-margin-right"></i>Tradester</a>
 
         <a href="/messages" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i
@@ -255,7 +255,7 @@ output.src = URL.createObjectURL(event.target.files[0]);
         <a href="/auth/logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
            title="Logout">
             Logout&nbsp
-            <img src="/dashboard_images/Prog.jpg" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
+            <img src="<%=user.profile_pic_url%>" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
         </a>
     </div>
 </div>
@@ -278,7 +278,7 @@ output.src = URL.createObjectURL(event.target.files[0]);
             <div class="w3-card w3-round w3-white">
                 <div class="w3-container">
                     <h4 class="w3-center">My Profile</h4>
-                    <p class="w3-center"><img src="/dashboard_images/Prog.jpg" class="w3-circle"
+                    <p class="w3-center"><img src="<%=user.profile_pic_url%>" class="w3-circle"
                                               style="height:106px;width:106px" alt="Avatar"></p>
                     <hr>
                     <p><i class="fa fa-smile-o fa-fw w3-margin-right w3-text-theme"></i> Completed Trades : </p>
@@ -295,7 +295,7 @@ output.src = URL.createObjectURL(event.target.files[0]);
                                 class="fa fa-user-o fa-fw w3-margin-right"></i> About me
                     </button>
                     <div id="Demo1" class="w3-hide w3-container">
-                        <p>Some text..</p>
+                        <p>Name:  <%=user.lname%></p>
                     </div>
                     <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
                                 class="fa fa-bars fa-fw w3-margin-right"></i> My Wish List
@@ -391,10 +391,10 @@ output.src = URL.createObjectURL(event.target.files[0]);
             <!--</div>-->
 
             <div class="w3-container w3-row-padding w3-card w3-white w3-round w3-margin"><br>
-                <img src="/dashboard_images/Prog.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                <img src="<%=user.profile_pic_url%>" alt="Avatar" class="w3-left w3-circle w3-margin-right"
                      style="width:60px;height:60px">
                 <span class="w3-right w3-opacity">1 min</span>
-                <h4>John Doe</h4><br>
+                <h4><%=user.lname%> <%=user.fname%></h4><br>
                 <hr class="w3-clear">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -419,10 +419,10 @@ output.src = URL.createObjectURL(event.target.files[0]);
             </div>
 
             <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                <img src="/dashboard_images/Prog.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                <img src="<%=user.profile_pic_url%>" alt="Avatar" class="w3-left w3-circle w3-margin-right"
                      style="width:60px;height:60px">
                 <span class="w3-right w3-opacity">16 min</span>
-                <h4>Jane Doe</h4><br>
+                <h4><%=user.lname%> <%=user.fname%></h4><br>
                 <hr class="w3-clear">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -436,10 +436,10 @@ output.src = URL.createObjectURL(event.target.files[0]);
             </div>
 
             <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                <img src="/dashboard_images/Prog.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                <img src="<%=user.profile_pic_url%>" alt="Avatar" class="w3-left w3-circle w3-margin-right"
                      style="width:60px;height:60px">
                 <span class="w3-right w3-opacity">32 min</span>
-                <h4>Angie Jane</h4><br>
+                <h4><%=user.lname%> <%=user.fname%></h4><br>
                 <hr class="w3-clear">
                 <p>Have you seen this?</p>
                 <img src="/dashboard_images/Prog.jpg" style="width:100%" class="w3-margin-bottom">
