@@ -61,9 +61,20 @@ app.get('/profile',function(req,res){
 		res.redirect('/');
 	}
     var random_suggestion_num = random(suggestions.length-1);
+      var sql_select='SELECT * from items where not email =\''+req.user.email+'\'';
+    console.log('select=  '+sql_select);
+    db.query(sql_select,function(err,item){
+        if(err)
+        {
+            console.log('some error in item');
+        }
+        else{
+        console.log(item)
+        res.render('Pages/newdashboard',{suggestion:suggestions[random_suggestion_num],user:req.user,item:item});
+        }
+    });
 
-
-   res.render('Pages/newdashboard',{suggestion:suggestions[random_suggestion_num],user:req.user});
+   
 });
 
 app.post('/action_page.php',function(req,res){
