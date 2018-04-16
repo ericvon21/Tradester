@@ -57,8 +57,9 @@ db.query(sql_select,function(err,user){
              newUser.fname = result.fname;
              newUser.lname = result.lname;
              newUser.profile_pic_url = result.profile_pic_url;
+             console.log("record inserted");
              return done(null,newUser);
-            console.log("record inserted");
+            
             // return done(null)
           }
         });
