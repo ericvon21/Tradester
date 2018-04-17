@@ -61,9 +61,27 @@ app.get('/profile',function(req,res){
 		res.redirect('/');
 	}
     var random_suggestion_num = random(suggestions.length-1);
+    var sql_select='SELECT * from items,users where items.email=users.email and not items.email=\''+req.user.email+'\'';
+    db.query(sql_select,function(err,user_and_item){
+        console.log(user_and_item)
+        if(err)
+        {
+            console.log(err);
+            res.render('Pages/newdashboard',{suggestion:suggestions[random_suggestion_num],user:req.user,feed:user_and_item});
+            return;
+        }
+
+    //    if (item.length == 0) console.log(item);
+        // for(i=0;i<item.length;i++){
+        //     console.log('item name='+item[i].item_name);
+        //     console.log('item email='+item[i].email);
+        // }
+      //  res.render('Pages/newdashboard',{suggestion:suggestions[random_suggestion_num],user:req.user});
+        res.render('Pages/newdashboard',{suggestion:suggestions[random_suggestion_num],user:req.user,feed:user_and_item});
+    });
 
 
-   res.render('Pages/newdashboard',{suggestion:suggestions[random_suggestion_num],user:req.user});
+
 });
 
 app.get('/item',function(req,res){
@@ -106,7 +124,34 @@ app.get('/delete_item', function(req,res){
     res.send(req.query.trade_item)
 });
 
-app.post('/items_view.php',function(req,res){
+app.post('/search_item',function(req,res){
+  res.send(req.query.trade_item)
+});
+
+app.get('/search_view',function(req,res){
+    var search_query = "t";
+    var regex = "^.*"+ search_query +".*$";
+
+    var sql_select='SELECT * from items where item_name LIKE \'%['+regex+']%\'';
+    console.log('select=  '+sql_select);
+    db.query(sql_select,function(err,item){
+        if(err)
+        {
+            console.log('some error in item');
+            console.log(err);
+        }
+        console.log(Object.values(item));
+        for(i=0;i<item.length;i++){
+            console.log('item name='+item[i].item_name);
+            console.log('item email='+item[i].email);
+        }
+        res.render('all_items',{item:item,user:req.user,search:true});
+    });
+
+
+});
+
+app.post('/items_view',function(req,res){
     var sql_select='SELECT * from items where email=\''+req.user.email+'\'';
     console.log('select=  '+sql_select);
     db.query(sql_select,function(err,item){
@@ -120,9 +165,11 @@ app.post('/items_view.php',function(req,res){
             console.log('item name='+item[i].item_name);
             console.log('item email='+item[i].email);
         }
-        res.render('all_items',{item:item,user:req.user});
+        res.render('all_items',{item:item,user:req.user,search:false});
     });
 });
+
+
 
 
 app.listen(3000);

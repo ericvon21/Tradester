@@ -279,13 +279,13 @@ output.src = URL.createObjectURL(event.target.files[0]);
             <!-- Profile -->
             <div class="w3-card w3-round w3-white">
                 <div class="w3-container">
-                    <h4 class="w3-center">My Profile</h4>
+                    <h4 class="w3-center"><%=user.fname%>&nbsp<%=user.lname%></h4>
                     <p class="w3-center"><img src="<%=user.profile_pic_url%>" class="w3-circle"
                                               style="height:106px;width:106px" alt="Avatar"></p>
                     <hr>
-                    <p><i class="fa fa-smile-o fa-fw w3-margin-right w3-text-theme"></i> Completed Trades : </p>
-                    <p><i class="fa fa-meh-o fa-fw w3-margin-right w3-text-theme"></i> Pending Trades : </p>
-                    <p><i class="fa fa-tasks fa-fw w3-margin-right w3-text-theme"></i> Total Trades : </p>
+                    <p><i class="fa fa-smile-o fa-fw w3-margin-right w3-text-theme"></i> Completed Trades : 0 </p>
+                    <p><i class="fa fa-meh-o fa-fw w3-margin-right w3-text-theme"></i>   Pending Trades&nbsp &nbsp&nbsp&nbsp&nbsp: 0</p>
+                    <p><i class="fa fa-tasks fa-fw w3-margin-right w3-text-theme"></i>   Total Trades&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: 0</p>
                 </div>
             </div>
             <br>
@@ -297,8 +297,8 @@ output.src = URL.createObjectURL(event.target.files[0]);
                                 class="fa fa-user-o fa-fw w3-margin-right"></i> About me
                     </button>
                     <div id="Demo1" class="w3-hide w3-container">
-                        <p>Name: &nbsp <%=user.lname%></p>
-                        <p>Email: &nbsp<%=user.email%>></p>
+                        <p>Name : <%=user.fname%>&nbsp<%=user.lname%></p>
+                        <p>Email : &nbsp<%=user.email%>></p>
                     </div>
                     <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
                                 class="fa fa-bars fa-fw w3-margin-right"></i> My Wish List
@@ -315,27 +315,7 @@ output.src = URL.createObjectURL(event.target.files[0]);
                     </button>
                     <div id="Demo3" class="w3-hide w3-container">
                         <div class="w3-row-padding">
-                            <!--<br>-->
                             list of friends ...
-                            <!--<p>&nbsp;</p>-->
-                            <!--<div class="w3-half">-->
-                                <!--<img src="/dashboard_images/Prog.jpg" style="width:100%" class="w3-margin-bottom">-->
-                            <!--</div>-->
-                            <!--<div class="w3-half">-->
-                                <!--<img src="/dashboard_images/Prog.jpg" style="width:100%" class="w3-margin-bottom">-->
-                            <!--</div>-->
-                            <!--<div class="w3-half">-->
-                                <!--<img src="/dashboard_images/Prog.jpg" style="width:100%" class="w3-margin-bottom">-->
-                            <!--</div>-->
-                            <!--<div class="w3-half">-->
-                                <!--<img src="/dashboard_images/Prog.jpg" style="width:100%" class="w3-margin-bottom">-->
-                            <!--</div>-->
-                            <!--<div class="w3-half">-->
-                                <!--<img src="/dashboard_images/Prog.jpg" style="width:100%" class="w3-margin-bottom">-->
-                            <!--</div>-->
-                            <!--<div class="w3-half">-->
-                                <!--<img src="/dashboard_images/Prog.jpg" style="width:100%" class="w3-margin-bottom">-->
-                            <!--</div>-->
                         </div>
                     </div>
                 </div>
@@ -392,25 +372,17 @@ output.src = URL.createObjectURL(event.target.files[0]);
             <!--</div>-->
             <!--</div>-->
             <!--</div>-->
+            <% var i = 0; %>
+            <%while (i < feed.length && i < 5) { %>
 
             <div class="w3-container w3-row-padding w3-card w3-white w3-round w3-margin"><br>
-                <img src="<%=user.profile_pic_url%>" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                <img src="<%=feed[i].pic_url%>" alt="No Image???" class="w3-left w3-circle w3-margin-right"
                      style="width:60px;height:60px">
                 <span class="w3-right w3-opacity">1 min</span>
-                <h4><%=user.lname%> <%=user.fname%></h4><br>
+                <h4><%=feed[i].fname%>&nbsp<%=feed[0].lname%> posted an item for trade</h4><br>
                 <hr class="w3-clear">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-                <div class="w3-row-padding" style="margin:0 -16px">
-                    <div class="w3-half">
-                        <img src="/w3images/lights.jpg" style="width:100%" alt="Northern Lights"
-                             class="w3-margin-bottom">
-                    </div>
-                    <div class="w3-half">
-                        <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
-                    </div>
-                </div>
+                <h1><%=feed[i].item_name%></h1>
+                <p><%=feed[i].description%></p>
 
                 <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
                      Like
@@ -419,42 +391,43 @@ output.src = URL.createObjectURL(event.target.files[0]);
                      Comment
                 </button>
             </div>
+            <% i++ }%>
 
-            <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                <img src="<%=user.profile_pic_url%>" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                     style="width:60px;height:60px">
-                <span class="w3-right w3-opacity">16 min</span>
-                <h4><%=user.lname%> <%=user.fname%></h4><br>
-                <hr class="w3-clear">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
-                     Like
-                </button>
-                <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
-                     Comment
-                </button>
-            </div>
+            <!--<div class="w3-container w3-card w3-white w3-round w3-margin"><br>-->
+                <!--<img src="<%=user.profile_pic_url%>" alt="Avatar" class="w3-left w3-circle w3-margin-right"-->
+                     <!--style="width:60px;height:60px">-->
+                <!--<span class="w3-right w3-opacity">16 min</span>-->
+                <!--<h4><%=user.lname%> <%=user.fname%></h4><br>-->
+                <!--<hr class="w3-clear">-->
+                <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore-->
+                    <!--et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut-->
+                    <!--aliquip ex ea commodo consequat.</p>-->
+                <!--<button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>-->
+                    <!-- Like-->
+                <!--</button>-->
+                <!--<button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>-->
+                    <!-- Comment-->
+                <!--</button>-->
+            <!--</div>-->
 
-            <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                <img src="<%=user.profile_pic_url%>" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                     style="width:60px;height:60px">
-                <span class="w3-right w3-opacity">32 min</span>
-                <h4><%=user.lname%> <%=user.fname%></h4><br>
-                <hr class="w3-clear">
-                <p>Have you seen this?</p>
-                <img src="/dashboard_images/Prog.jpg" style="width:100%" class="w3-margin-bottom">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
-                     Like
-                </button>
-                <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
-                     Comment
-                </button>
-            </div>
+            <!--<div class="w3-container w3-card w3-white w3-round w3-margin"><br>-->
+                <!--<img src="<%=user.profile_pic_url%>" alt="Avatar" class="w3-left w3-circle w3-margin-right"-->
+                     <!--style="width:60px;height:60px">-->
+                <!--<span class="w3-right w3-opacity">32 min</span>-->
+                <!--<h4><%=user.lname%> <%=user.fname%></h4><br>-->
+                <!--<hr class="w3-clear">-->
+                <!--<p>Have you seen this?</p>-->
+                <!--<img src="/dashboard_images/Prog.jpg" style="width:100%" class="w3-margin-bottom">-->
+                <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore-->
+                    <!--et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut-->
+                    <!--aliquip ex ea commodo consequat.</p>-->
+                <!--<button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>-->
+                    <!-- Like-->
+                <!--</button>-->
+                <!--<button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>-->
+                    <!-- Comment-->
+                <!--</button>-->
+            <!--</div>-->
 
             <!-- End Middle Column -->
         </div>
@@ -513,7 +486,7 @@ output.src = URL.createObjectURL(event.target.files[0]);
                     <img src="/dashboard_images/Viewallitems.png" alt="Avatar" style="width:100%"><br>
                     <!--<span>Jane Doe</span>-->
 
-                    <form action="/items_view.php" method="POST">
+                    <form action="/items_view" method="POST">
                         <input class="button0 " type="submit" style="width:100%;border-radius: 12px" value="View all Items"/>
                     </form>
 

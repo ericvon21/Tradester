@@ -122,7 +122,36 @@
   .container {
     padding: 16px;
   }
+  .container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+  }
 
+  .container img {
+    width: 100%;
+    height: auto;
+  }
+
+  .container .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .container .btn:hover {
+    background-color: black;
+  }
   /* The Modal (background) */
   .modal {
     display: none; /* Hidden by default */
@@ -251,16 +280,23 @@
       <%while (i < item.length) { %>
 
     <div class="w3-quarter ">
-      <a href="/item"><img src="<%=item[i].pic_url%>"  alt="Sandwich" style="width: 100%">
-      </a>
-      <%var item_name = item[i].item_name%>
+      <% var image = item[i].pic_url%>
+      <img src="<%=image%>"  alt="Sandwich" style="width: 100%">
+
+
       <h3><%=item[i].item_name%></h3>
       <p><%=item[i].item_name%></p>
       <div class="w3-row">
         <div>
-          <form method="get" action="/delete_item">
-            <button class="w3-button w3-block w3-red w3-section" style="opacity: 0.8;" type="submit" id="trade_item" name="trade_item" value="<%=item[i].email%>" > Remove Item <i class="fa fa-remove"></i></button>
+          <%if (search == true){%>
+          <form  method="get" action="/delete_item">
+            <button class="w3-button w3-block w3-green w3-section" style="  opacity: 0.8;" type="submit" id="trade_item" name="trade_item" value="<%=item[i].item_id%>" > Trade Item <i class="fa fa-check"></i></button>
           </form>
+          <%} else{%>
+          <form  method="get" action="/search_item">
+            <button class="w3-button w3-block w3-red w3-section" style="  opacity: 0.8;" type="submit" id="trade_item" name="trade_item" value="<%=item[i].item_id%>" > Remove Item <i class="fa fa-remove"></i></button>
+          </form>
+          <%}%>
 
         </div>
       </div>
