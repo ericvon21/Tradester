@@ -1,146 +1,364 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Tradester</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="shortcut icon" type="image/x-icon" href="/dashboard_images/images.png" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
-.w3-bar-block .w3-bar-item {padding:20px}
+  html, body, h1, h2, h3, h4, h5, textarea, text {
+    font-family: "Open Sans", sans-serif
+  }
+
+
+
+  .search-container {
+    float: right;
+  }
+
+  .search-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .search-container button:hover {
+    background: #ccc;
+  }
+
+  @media screen and (max-width: 600px) {
+    .topnav .search-container {
+      float: none;
+    }
+    .search-container button {
+      float: none;
+      display: block;
+      text-align: left;
+      width: 100%;
+      margin: 0;
+      padding: 14px;
+    }
+  }
+
+
+
+  /* Full-width input fields */
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  /* Set a style for all buttons */
+  .button0 {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: auto;
+  }
+
+  .button3 {
+    background-color: white;
+    color: black;
+    border: 2px solid #f44336;
+  }
+
+  .button3:hover {
+    background-color: #f44336;
+    color: white;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+  .button0:hover {
+    opacity: 0.8;
+  }
+
+  /* Extra styles for the cancel button */
+  .cancelbtn {
+    width: auto;
+    padding: 14px 20px;
+    background-color: #f44336;
+  }
+
+  .custom-file-upload {
+    border: 1px solid #78D8EF;
+    display: inline-block;
+    padding: 12px 18px;
+    cursor: pointer;
+    background-color: #F0FCFF;
+  }
+
+  /* Center the image and position the close button */
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+  }
+
+  .container {
+    padding: 16px;
+  }
+
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    padding-top: 60px;
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+
+  /* The Close Button (x) */
+  .close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: red;
+    cursor: pointer;
+  }
+
+  /* Add Zoom Animation */
+  .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+
+  @-webkit-keyframes animatezoom {
+    from {
+      -webkit-transform: scale(0)
+    }
+    to {
+      -webkit-transform: scale(1)
+    }
+  }
+
+  @keyframes animatezoom {
+    from {
+      transform: scale(0)
+    }
+    to {
+      transform: scale(1)
+    }
+  }
+
+  /*Change styles for span and cancel button on extra small screens*/
+  @media screen and (max-width: 300px) {
+    span.psw {
+      display: block;
+      float: none;
+    }
+
+    .cancelbtn {
+      width: 100%;
+    }
+  }
+
+  .zoom {
+    transition: transform .2s; /* Animation */
+    width: 2.5%;
+  }
+
+  .zoom:hover {
+    transform: scale(6); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+
 </style>
-<body>
 
-<!-- Sidebar (hidden by default) -->
-<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()"
-  class="w3-bar-item w3-button">Close Menu</a>
-  <a href="#food" onclick="w3_close()" class="w3-bar-item w3-button">Food</a>
-  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">About</a>
-</nav>
+<body class="w3-theme-l5">
 
-<!-- Top menu -->
+<!-- Navbar -->
 <div class="w3-top">
-  <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-    <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
-    <div class="w3-right w3-padding-16">Mail</div>
-    <div class="w3-center w3-padding-16">My Food</div>
+  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
+       href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+    <a href="/profile" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i
+              class="fa fa-home w3-margin-right"></i>Tradester</a>
+
+    <a href="/messages" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i
+              class="fa fa-envelope"></i></a>
+
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span
+                class="w3-badge w3-right w3-small w3-green">3</span></button>
+      <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+        <a href="#" class="w3-bar-item w3-button">Trade request from <"trader"></a>
+        <a href="#" class="w3-bar-item w3-button">Trade request from <"trader"></a>
+        <a href="#" class="w3-bar-item w3-button">Trade request from <"trader"></a>
+      </div>
+
+    </div>
+
+
+    <a href="/auth/logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
+       title="Logout">
+      Logout&nbsp
+      <img src="<%=user.profile_pic_url%>" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
+    </a>
   </div>
 </div>
-  
+
 <!-- !PAGE CONTENT! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
 
   <!-- First Photo Grid-->
   <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-    <div class="w3-quarter">
-      <img src="<%=item[0].pic_url%>" alt="Sandwich" style="width:100%">
-      <h3>The Perfect Sandwich, A Real NYC Classic</h3>
-      <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+      <% var i = 0; %>
+      <%while (i < item.length) { %>
+
+    <div class="w3-quarter ">
+      <a href="/item"><img src="<%=item[i].pic_url%>"  alt="Sandwich" style="width: 100%">
+      </a>
+      <%var item_name = item[i].item_name%>
+      <h3><%=item[i].item_name%></h3>
+      <p><%=item[i].item_name%></p>
+      <div class="w3-row">
+        <div>
+          <form method="get" action="/delete_item">
+            <button class="w3-button w3-block w3-red w3-section" style="opacity: 0.8;" type="submit" id="trade_item" name="trade_item" value="<%=item[i].email%>" > Remove Item <i class="fa fa-remove"></i></button>
+          </form>
+
+        </div>
+      </div>
+        <br>
+        <br>
     </div>
-   <!--  <div class="w3-quarter">
-      <img src="/w3images/steak.jpg" alt="Steak" style="width:100%">
-      <h3>Let Me Tell You About This Steak</h3>
-      <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/cherries.jpg" alt="Cherries" style="width:100%">
-      <h3>Cherries, interrupted</h3>
-      <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-      <p>What else?</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/wine.jpg" alt="Pasta and Wine" style="width:100%">
-      <h3>Once Again, Robust Wine and Vegetable Pasta</h3>
-      <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p> -->
-    </div>
+      <% i++ }%>
+
+
+
   </div>
-  
+</div>
+
   <!-- Second Photo Grid-->
-  <div class="w3-row-padding w3-padding-16 w3-center">
-    <div class="w3-quarter">
-      <img src="/w3images/popsicle.jpg" alt="Popsicle" style="width:100%">
-      <h3>All I Need Is a Popsicle</h3>
-      <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/salmon.jpg" alt="Salmon" style="width:100%">
-      <h3>Salmon For Your Skin</h3>
-      <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/sandwich.jpg" alt="Sandwich" style="width:100%">
-      <h3>The Perfect Sandwich, A Real Classic</h3>
-      <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/croissant.jpg" alt="Croissant" style="width:100%">
-      <h3>Le French</h3>
-      <p>Lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-  </div>
+  <!--<div class="w3-row-padding w3-padding-16 w3-center">-->
+    <!--<div class="w3-quarter">-->
+      <!--<img src="/w3images/popsicle.jpg" alt="Popsicle" style="width:100%">-->
+      <!--<h3>All I Need Is a Popsicle</h3>-->
+      <!--<p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>-->
+    <!--</div>-->
+    <!--<div class="w3-quarter">-->
+      <!--<img src="/w3images/salmon.jpg" alt="Salmon" style="width:100%">-->
+      <!--<h3>Salmon For Your Skin</h3>-->
+      <!--<p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>-->
+    <!--</div>-->
+    <!--<div class="w3-quarter">-->
+      <!--<img src="/w3images/sandwich.jpg" alt="Sandwich" style="width:100%">-->
+      <!--<h3>The Perfect Sandwich, A Real Classic</h3>-->
+      <!--<p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>-->
+    <!--</div>-->
+    <!--<div class="w3-quarter">-->
+      <!--<img src="/w3images/croissant.jpg" alt="Croissant" style="width:100%">-->
+      <!--<h3>Le French</h3>-->
+      <!--<p>Lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>-->
+    <!--</div>-->
+  <!--</div>-->
 
   <!-- Pagination -->
-  <div class="w3-center w3-padding-32">
-    <div class="w3-bar">
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
-      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
-    </div>
-  </div>
-  
-  <hr id="about">
+  <!--<div class="w3-center w3-padding-32">-->
+    <!--<div class="w3-bar">-->
+      <!--<a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>-->
+      <!--<a href="#" class="w3-bar-item w3-black w3-button">1</a>-->
+      <!--<a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>-->
+      <!--<a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>-->
+      <!--<a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>-->
+      <!--<a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!---->
+  <!--<hr id="about">-->
 
   <!-- About Section -->
-  <div class="w3-container w3-padding-32 w3-center">  
-    <h3>About Me, The Food Man</h3><br>
-    <img src="/w3images/chef.jpg" alt="Me" class="w3-image" style="display:block;margin:auto" width="800" height="533">
-    <div class="w3-padding-32">
-      <h4><b>I am Who I Am!</b></h4>
-      <h6><i>With Passion For Real, Good Food</i></h6>
-      <p>Just me, myself and I, exploring the universe of unknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. I want to share my world with you. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-    </div>
-  </div>
-  <hr>
+  <!--<div class="w3-container w3-padding-32 w3-center">  -->
+    <!--<h3>About Me, The Food Man</h3><br>-->
+    <!--<img src="/w3images/chef.jpg" alt="Me" class="w3-image" style="display:block;margin:auto" width="800" height="533">-->
+    <!--<div class="w3-padding-32">-->
+      <!--<h4><b>I am Who I Am!</b></h4>-->
+      <!--<h6><i>With Passion For Real, Good Food</i></h6>-->
+      <!--<p>Just me, myself and I, exploring the universe of unknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. I want to share my world with you. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<hr>-->
   
   <!-- Footer -->
-  <footer class="w3-row-padding w3-padding-32">
-    <div class="w3-third">
-      <h3>FOOTER</h3>
-      <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-    </div>
-  
-    <div class="w3-third">
-      <h3>BLOG POSTS</h3>
-      <ul class="w3-ul w3-hoverable">
-        <li class="w3-padding-16">
-          <img src="/w3images/workshop.jpg" class="w3-left w3-margin-right" style="width:50px">
-          <span class="w3-large">Lorem</span><br>
-          <span>Sed mattis nunc</span>
-        </li>
-        <li class="w3-padding-16">
-          <img src="/w3images/gondol.jpg" class="w3-left w3-margin-right" style="width:50px">
-          <span class="w3-large">Ipsum</span><br>
-          <span>Praes tinci sed</span>
-        </li> 
-      </ul>
-    </div>
+  <!--<footer class="w3-row-padding w3-padding-32">-->
+    <!--<div class="w3-third">-->
+      <!--<h3>FOOTER</h3>-->
+      <!--<p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>-->
+      <!--<p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>-->
+    <!--</div>-->
+  <!---->
+    <!--<div class="w3-third">-->
+      <!--<h3>BLOG POSTS</h3>-->
+      <!--<ul class="w3-ul w3-hoverable">-->
+        <!--<li class="w3-padding-16">-->
+          <!--<img src="/w3images/workshop.jpg" class="w3-left w3-margin-right" style="width:50px">-->
+          <!--<span class="w3-large">Lorem</span><br>-->
+          <!--<span>Sed mattis nunc</span>-->
+        <!--</li>-->
+        <!--<li class="w3-padding-16">-->
+          <!--<img src="/w3images/gondol.jpg" class="w3-left w3-margin-right" style="width:50px">-->
+          <!--<span class="w3-large">Ipsum</span><br>-->
+          <!--<span>Praes tinci sed</span>-->
+        <!--</li> -->
+      <!--</ul>-->
+    <!--</div>-->
 
-    <div class="w3-third w3-serif">
-      <h3>POPULAR TAGS</h3>
-      <p>
-        <span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dinner</span>
-        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Salmon</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">France</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Drinks</span>
-        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Flavors</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Cuisine</span>
-        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Chicken</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dressing</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fried</span>
-        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fish</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Duck</span>
-      </p>
-    </div>
-  </footer>
+    <!--<div class="w3-third w3-serif">-->
+      <!--<h3>POPULAR TAGS</h3>-->
+      <!--<p>-->
+        <!--<span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dinner</span>-->
+        <!--<span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Salmon</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">France</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Drinks</span>-->
+        <!--<span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Flavors</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Cuisine</span>-->
+        <!--<span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Chicken</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Dressing</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fried</span>-->
+        <!--<span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fish</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Duck</span>-->
+      <!--</p>-->
+    <!--</div>-->
+  <!--</footer>-->
 
 <!-- End page content -->
 </div>

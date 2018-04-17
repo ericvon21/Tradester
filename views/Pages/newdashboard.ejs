@@ -3,6 +3,8 @@
 <title>Tradester</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="shortcut icon" type="image/x-icon" href="/dashboard_images/images.png" />
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
@@ -295,7 +297,8 @@ output.src = URL.createObjectURL(event.target.files[0]);
                                 class="fa fa-user-o fa-fw w3-margin-right"></i> About me
                     </button>
                     <div id="Demo1" class="w3-hide w3-container">
-                        <p>Name:  <%=user.lname%></p>
+                        <p>Name: &nbsp <%=user.lname%></p>
+                        <p>Email: &nbsp<%=user.email%>></p>
                     </div>
                     <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
                                 class="fa fa-bars fa-fw w3-margin-right"></i> My Wish List
@@ -408,7 +411,6 @@ output.src = URL.createObjectURL(event.target.files[0]);
                         <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
                     </div>
                 </div>
-
 
                 <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
                      Like

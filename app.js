@@ -5,7 +5,7 @@ var passportSetup=require('./config/passport-setup');
 var fileUpload = require('express-fileupload');
 var bodyParser = require('body-parser');
 var path = require('path');
-var random = require('random-int')
+var random = require('random-int');
 const cookieSession = require('cookie-session');
 const passport=require('passport');
 var db = require('./tables/db');
@@ -66,6 +66,12 @@ app.get('/profile',function(req,res){
    res.render('Pages/newdashboard',{suggestion:suggestions[random_suggestion_num],user:req.user});
 });
 
+app.get('/item',function(req,res){
+   console.log(req.body.item_item);
+   res.send(req.body.trade_item);
+});
+
+
 app.post('/action_page.php',function(req,res){
     var item_name = req.body.item_name;
     var description = req.body.description;
@@ -96,6 +102,9 @@ app.post('/action_page.php',function(req,res){
     res.redirect('/profile');
 });
 
+app.get('/delete_item', function(req,res){
+    res.send(req.query.trade_item)
+});
 
 app.post('/items_view.php',function(req,res){
     var sql_select='SELECT * from items where email=\''+req.user.email+'\'';
@@ -111,9 +120,10 @@ app.post('/items_view.php',function(req,res){
             console.log('item name='+item[i].item_name);
             console.log('item email='+item[i].email);
         }
-        res.render('all_items',{item:item});
+        res.render('all_items',{item:item,user:req.user});
     });
 });
+
 
 app.listen(3000);
 console.log('app now listening for requests on port 3000');
