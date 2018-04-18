@@ -289,11 +289,11 @@
       <div class="w3-row">
         <div>
           <%if (search == true){%>
-          <form  method="get" action="/delete_item">
+          <form  method="get" action="/trade_item">
             <button class="w3-button w3-block w3-green w3-section" style="  opacity: 0.8;" type="submit" id="trade_item" name="trade_item" value="<%=item[i].item_id%>" > Trade Item <i class="fa fa-check"></i></button>
           </form>
           <%} else{%>
-          <form  method="get" action="/search_item">
+          <form  method="get" action="/delete_item">
             <button class="w3-button w3-block w3-red w3-section" style="  opacity: 0.8;" type="submit" id="trade_item" name="trade_item" value="<%=item[i].item_id%>" > Remove Item <i class="fa fa-remove"></i></button>
           </form>
           <%}%>

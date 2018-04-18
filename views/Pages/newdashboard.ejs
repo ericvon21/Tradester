@@ -373,13 +373,13 @@ output.src = URL.createObjectURL(event.target.files[0]);
             <!--</div>-->
             <!--</div>-->
             <% var i = 0; %>
-            <%while (i < feed.length && i < 5) { %>
+            <%while (i < feed.length && i < 20) { %>
 
             <div class="w3-container w3-row-padding w3-card w3-white w3-round w3-margin"><br>
                 <img src="<%=feed[i].pic_url%>" alt="No Image???" class="w3-left w3-circle w3-margin-right"
                      style="width:60px;height:60px">
                 <span class="w3-right w3-opacity">1 min</span>
-                <h4><%=feed[i].fname%>&nbsp<%=feed[0].lname%> posted an item for trade</h4><br>
+                <h4><%=feed[i].fname%>&nbsp<%=feed[i].lname%> posted an item for trade</h4><br>
                 <hr class="w3-clear">
                 <h1><%=feed[i].item_name%></h1>
                 <p><%=feed[i].description%></p>

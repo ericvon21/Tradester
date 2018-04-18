@@ -52,18 +52,20 @@ app.get('/',function (req, res) {
 });
 
 app.get('/dashboard', function (req,res){
+
     res.render('dashboard');
 });
 
 app.get('/profile',function(req,res){
-	//console.log("profile user="+Object.values(req.user));
+	console.log("profile user="+ req.user.email);
 	if(!req.user){
 		res.redirect('/');
 	}
+
     var random_suggestion_num = random(suggestions.length-1);
-    var sql_select='SELECT * from items,users where items.email=users.email and not items.email=\''+req.user.email+'\'';
+    var sql_select='SELECT * from items,users where items.email=users.email and not items.email=\''+req.user.email+'\' ORDER BY item_id DESC';
     db.query(sql_select,function(err,user_and_item){
-        console.log(user_and_item)
+      //  console.log(user_and_item);
         if(err)
         {
             console.log(err);
@@ -106,9 +108,11 @@ app.post('/action_page.php',function(req,res){
         file.mv(file_path, function(err){
             if (err) throw err;
         });
+
          var sql_insert='INSERT into items(email,description,item_name,is_trade,pic_url) VALUES (\''+req.user.email+'\',\''
         +description+'\',\''+item_name+'\','+ 0 +',\''+ file_path+'\')';
-        db.query(sql_insert,function(err,user){
+        console.log(sql_insert);
+         db.query(sql_insert,function(err,user){
              if(err)
                 console.log('error adding item');
             else
@@ -121,30 +125,46 @@ app.post('/action_page.php',function(req,res){
 });
 
 app.get('/delete_item', function(req,res){
-    res.send(req.query.trade_item)
+    res.render('Pages/errorpage',{user:req.user, perror:"Please Implement Delete Item First"})
 });
 
-app.post('/search_item',function(req,res){
-  res.send(req.query.trade_item)
+app.get('/trade_item',function(req,res){
+    var item_id = req.query.trade_item;
+    var item_query = 'UPDATE items SET is_trade = 1 WHERE item_id ='+item_id;
+    console.log(item_query);
+
+    db.query(item_query,function(err,item){
+        if(err)
+        {
+            console.log('some error in item');
+            console.log(err);
+        }
+        console.log(item);
+        res.send(req.query.trade_item)
+    });
+
 });
 
 app.get('/search_view',function(req,res){
-    var search_query = "t";
+    var search_query = "tble";
     var regex = "^.*"+ search_query +".*$";
 
-    var sql_select='SELECT * from items where item_name LIKE \'%['+regex+']%\'';
+    var sql_select='SELECT * from items where item_name=\''+search_query + '\'';
     console.log('select=  '+sql_select);
     db.query(sql_select,function(err,item){
         if(err)
         {
             console.log('some error in item');
             console.log(err);
+            res.send("Could not query, Something went wrong");
+            return;
         }
-        console.log(Object.values(item));
-        for(i=0;i<item.length;i++){
-            console.log('item name='+item[i].item_name);
-            console.log('item email='+item[i].email);
+        console.log(item);
+        if (item.length == 0){
+            res.render('Pages/errorpage',{user:req.user, perror:"No Items Found"})
+            return;
         }
+
         res.render('all_items',{item:item,user:req.user,search:true});
     });
 
@@ -152,6 +172,7 @@ app.get('/search_view',function(req,res){
 });
 
 app.post('/items_view',function(req,res){
+    console.log(req.user);
     var sql_select='SELECT * from items where email=\''+req.user.email+'\'';
     console.log('select=  '+sql_select);
     db.query(sql_select,function(err,item){
@@ -164,6 +185,10 @@ app.post('/items_view',function(req,res){
         for(i=0;i<item.length;i++){
             console.log('item name='+item[i].item_name);
             console.log('item email='+item[i].email);
+        }
+        if (item.length==0){
+            res.render('Pages/errorpage',{user:req.user, perror:"You have no Items yet :( ...  Start by adding items!"});
+            return;
         }
         res.render('all_items',{item:item,user:req.user,search:false});
     });
