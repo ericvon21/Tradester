@@ -3,6 +3,7 @@
 <title>Tradester</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<%include ../partials/head.ejs%>
 
 <link rel="shortcut icon" type="image/x-icon" href="/dashboard_images/images.png" />
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -241,41 +242,20 @@
 <body class="w3-theme-l5">
 
 <!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
-       href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-    <a href="/profile" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i
-              class="fa fa-home w3-margin-right"></i>Tradester</a>
+<%include ../partials/header.ejs%>
 
-    <a href="/messages" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i
-              class="fa fa-envelope"></i></a>
-
-    <div class="w3-dropdown-hover w3-hide-small">
-      <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span
-                class="w3-badge w3-right w3-small w3-green">3</span></button>
-      <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-        <a href="#" class="w3-bar-item w3-button">Trade request from <"trader"></a>
-        <a href="#" class="w3-bar-item w3-button">Trade request from <"trader"></a>
-        <a href="#" class="w3-bar-item w3-button">Trade request from <"trader"></a>
-      </div>
-
-    </div>
-
-
-    <a href="/auth/logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
-       title="Logout">
-      Logout&nbsp
-      <img src="<%=user.profile_pic_url%>" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
-    </a>
-  </div>
-</div>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
 
   <!-- First Photo Grid-->
   <div class="w3-row-padding w3-padding-16 w3-center" id="food">
+
+      <%if (item.length < 1){ %>>
+      <h1 style="align-self: center">Seems like you don't have any posts yet.. Start by adding some items for trading </h1>
+      <%}else{ %>
+
+
       <% var i = 0; %>
       <%while (i < item.length) { %>
 
@@ -285,7 +265,7 @@
 
 
       <h3><%=item[i].item_name%></h3>
-      <p><%=item[i].item_name%></p>
+      <p><%=item[i].description%></p>
       <div class="w3-row">
         <div>
           <%if (search == true){%>
@@ -305,7 +285,7 @@
     </div>
       <% i++ }%>
 
-
+    <%}%>
 
   </div>
 </div>

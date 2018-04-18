@@ -1,66 +1,36 @@
-<meta charset="utf-8">
-<title>Login</title>
+<title>Tradester</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="shortcut icon" type="image/x-icon" href="/dashboard_images/images.png" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+
 <style>
-    body{
-        /*background: #ff5353;*/
-        /* background: url("darkness.png");*/
-        background-image: url("../Background.jpg");
-        background-color: #cccccc;
-        font-family: arial;
-        margin: 0;
+    html, body, h1, h2, h3, h4, h5, textarea, text {
+        font-family: "Open Sans", sans-serif
     }
-    nav{
-        background: #262626;
-        /* background: url(darkness.png);*/
-        padding: 20px 10px;
+
+    @media screen and (max-width: 600px) {
+        .topnav .search-container {
+            float: none;
+        }
+        .search-container button {
+            float: none;
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+            padding: 14px;
+        }
     }
-    nav ul{
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 0;
-    }
-    nav li{
-        list-style-type: none;
-        display: inline-block;
-        margin: 0 10px 0 0;
-    }
-    nav a{
-        color: #fff;
-        font-size: 18px;
-        background: rgba(255,255,255,0.2);
-        text-decoration: none;
-        padding: 10px;
-        display: block;
-    }
-    main, header{
-        max-width: 960px;
-        margin: 30px auto;
-        padding: 0 10px;
-        color: #333;
-    }
-    .google-btn{
-        color: #fff;
-        text-decoration: none;
-        font-size: 18px;
-        padding: 10px;
-        background: #ff5353;
-    }
-    .facebook-btn{
-        color: #fff;
-        text-decoration: none;
-        font-size: 18px;
-        padding: 10px;
-        background: #003366;
-    }
-    .footer{
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: blue;
-        color: white;
-        text-align: center;
-    }
+
+
+
     /* Full-width input fields */
     input[type=text], input[type=password] {
         width: 100%;
@@ -71,113 +41,135 @@
         box-sizing: border-box;
     }
 
-    /* Set a style for all buttons */
-    button {
-        background-color: #4CAF50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 100%;
+    input[type="file"] {
+        display: none;
     }
+
+
 
     button:hover {
         opacity: 0.8;
     }
 
-    /* Extra styles for the cancel button */
-    .cancelbtn {
-        width: auto;
-        padding: 10px 18px;
-        background-color: #f44336;
-    }
+
+
 
     /* Center the image and position the close button */
-    .imgcontainer {
-        text-align: center;
-        margin: 24px 0 12px 0;
-        position: relative;
+
+
+    .container img {
+        width: 100%;
+        height: auto;
     }
 
-    img.avatar {
-        width: 40%;
-        border-radius: 50%;
-    }
-
-    .container {
-        padding: 16px;
-    }
-
-    span.psw {
-        float: right;
-        padding-top: 16px;
-    }
-
-    /* The Modal (background) */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        padding-top: 60px;
-    }
-
-    /* Modal Content/Box */
-    .modal-content {
-        background-color: #fefefe;
-        margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-        border: 1px solid #888;
-        width: 80%; /* Could be more or less, depending on screen size */
-    }
-
-    /* The Close Button (x) */
-    .close {
+    .container .btn {
         position: absolute;
-        right: 25px;
-        top: 0;
-        color: #000;
-        font-size: 35px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: red;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: #555;
+        color: white;
+        font-size: 16px;
+        padding: 12px 24px;
+        border: none;
         cursor: pointer;
+        border-radius: 5px;
+        text-align: center;
     }
 
-    /* Add Zoom Animation */
-    .animate {
-        -webkit-animation: animatezoom 0.6s;
-        animation: animatezoom 0.6s
+    .container .btn:hover {
+        background-color: black;
     }
+    /* The Modal (background) */
 
     @-webkit-keyframes animatezoom {
-        from {-webkit-transform: scale(0)}
-        to {-webkit-transform: scale(1)}
+        from {
+            -webkit-transform: scale(0)
+        }
+        to {
+            -webkit-transform: scale(1)
+        }
     }
 
     @keyframes animatezoom {
-        from {transform: scale(0)}
-        to {transform: scale(1)}
+        from {
+            transform: scale(0)
+        }
+        to {
+            transform: scale(1)
+        }
     }
 
-    /* Change styles for span and cancel button on extra small screens */
+    /*Change styles for span and cancel button on extra small screens*/
     @media screen and (max-width: 300px) {
         span.psw {
             display: block;
             float: none;
         }
+
         .cancelbtn {
             width: 100%;
         }
+    }
+
+
+
+    .container-2{
+        width: 300px;
+        vertical-align: middle;
+        white-space: nowrap;
+        position: relative;
+    }
+    .container-2 input#search{
+        width: 100px;
+        height: 25px;
+        background: #2b303b;
+        border: none;
+        font-size: 10pt;
+        float: left;
+        color: #262626;
+        padding-left: 37px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        color: #fff;
+
+        -webkit-transition: width .55s ease;
+        -moz-transition: width .55s ease;
+        -ms-transition: width .55s ease;
+        -o-transition: width .55s ease;
+        transition: width .55s ease;
+    }
+    .container-2 .icon{
+        position: absolute;
+        top: 50%;
+        margin-left: 17px;
+        z-index: 1;
+        color: #4f5b66;
+    }
+    .container-2 input#search:focus, .container-2 input#search:active{
+        outline:none;
+        width: 150%;
+    }
+
+    .container-2:hover input#search{
+        width: 150%;
+    }
+
+    .container-2:hover .icon{
+        color: #93a2ad;
+    }
+    .container-2 input#search::-webkit-input-placeholder {
+        color: #65737e;
+    }
+
+    .container-2 input#search:-moz-placeholder { /* Firefox 18- */
+        color: #65737e;
+    }
+
+    .container-2 input#search:-ms-input-placeholder {
+        color: #65737e;
     }
 
 </style>

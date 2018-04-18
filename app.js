@@ -61,9 +61,11 @@ app.get('/profile',function(req,res){
 	if(!req.user){
 		res.redirect('/');
 	}
-
-    var random_suggestion_num = random(suggestions.length-1);
+    var sql_query='SELECT * from items where email=\''+req.user.email+'\'';
     var sql_select='SELECT * from items,users where items.email=users.email and not items.email=\''+req.user.email+'\' ORDER BY item_id DESC';
+    var random_suggestion_num = random(suggestions.length-1);
+    var num_req = 0;
+
     db.query(sql_select,function(err,user_and_item){
       //  console.log(user_and_item);
         if(err)
@@ -72,6 +74,18 @@ app.get('/profile',function(req,res){
             res.render('Pages/newdashboard',{suggestion:suggestions[random_suggestion_num],user:req.user,feed:user_and_item});
             return;
         }
+        db.query(sql_query,function(err,item){
+            if(err) {
+                console.log('some error in item');
+                console.log(err);
+                return;
+            }
+            num_req = item.length;
+            res.render('Pages/newdashboard',{suggestion:suggestions[random_suggestion_num],user:req.user,feed:user_and_item,pending_req :num_req});
+
+        });
+
+
 
     //    if (item.length == 0) console.log(item);
         // for(i=0;i<item.length;i++){
@@ -79,7 +93,6 @@ app.get('/profile',function(req,res){
         //     console.log('item email='+item[i].email);
         // }
       //  res.render('Pages/newdashboard',{suggestion:suggestions[random_suggestion_num],user:req.user});
-        res.render('Pages/newdashboard',{suggestion:suggestions[random_suggestion_num],user:req.user,feed:user_and_item});
     });
 
 
@@ -98,7 +111,7 @@ app.post('/action_page.php',function(req,res){
 
     if(req.files.img == undefined)
     {
-        res.send("File was not found");
+        res.render('Pages/errorpage',{user:req.user, perror:"Image Invalid, Please use a valid image"});
         return;
     }else {
         console.log(req.files.img.name);
@@ -124,6 +137,8 @@ app.post('/action_page.php',function(req,res){
     res.redirect('/profile');
 });
 
+
+
 app.get('/delete_item', function(req,res){
     res.render('Pages/errorpage',{user:req.user, perror:"Please Implement Delete Item First"})
 });
@@ -140,13 +155,13 @@ app.get('/trade_item',function(req,res){
             console.log(err);
         }
         console.log(item);
-        res.send(req.query.trade_item)
+        res.render('Pages/errorpage',{user:req.user, perror:"Please Implement Trade Item first"});
     });
 
 });
 
-app.get('/search_view',function(req,res){
-    var search_query = "tble";
+app.get('/search',function(req,res){
+    var search_query = req.query.search;
     var regex = "^.*"+ search_query +".*$";
 
     var sql_select='SELECT * from items where item_name=\''+search_query + '\'';
@@ -161,11 +176,10 @@ app.get('/search_view',function(req,res){
         }
         console.log(item);
         if (item.length == 0){
-            res.render('Pages/errorpage',{user:req.user, perror:"No Items Found"})
+            res.render('Pages/errorpage',{user:req.user, perror:"No Items Found"});
             return;
         }
-
-        res.render('all_items',{item:item,user:req.user,search:true});
+        res.render('Pages/all_items',{item:item,user:req.user,search:true});
     });
 
 
@@ -190,7 +204,7 @@ app.post('/items_view',function(req,res){
             res.render('Pages/errorpage',{user:req.user, perror:"You have no Items yet :( ...  Start by adding items!"});
             return;
         }
-        res.render('all_items',{item:item,user:req.user,search:false});
+        res.render('Pages/all_items',{item:item,user:req.user,search:false});
     });
 });
 
