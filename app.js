@@ -162,10 +162,18 @@ app.get('/trade_item',function(req,res){
 
 app.get('/search',function(req,res){
     var search_query = req.query.search;
-    var regex = "^.*"+ search_query +".*$";
-
-    var sql_select='SELECT * from items where item_name=\''+search_query + '\'';
-    console.log('select=  '+sql_select);
+    var search_tokens=search_query.split(" ");
+    var where='';
+    var tokens_size=search_tokens.length;
+    var i;
+    for (i = 0; i <tokens_size-1; i++) {
+        where='item_name REGEXP\''+search_tokens[i]+'\' and ';
+    }
+        where+='item_name REGEXP\''+search_tokens[tokens_size-1]+'\'';
+var sql_select='SELECT * from items where '+where;
+    console.log('sql search= '+sql_select);
+    //var sql_select='SELECT * from items where item_name=\''+search_query + '\'';
+  //  console.log('select=  '+sql_select);
     db.query(sql_select,function(err,item){
         if(err)
         {
