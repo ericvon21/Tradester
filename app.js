@@ -208,6 +208,10 @@ app.post('/items_view',function(req,res){
     });
 });
 
+app.get('*', function(req, res) {
+    res.redirect('/');
+});
+
 
 
 

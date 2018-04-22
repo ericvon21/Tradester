@@ -8,19 +8,20 @@ var key=require('../config/key.js')
 
 
 passport.serializeUser((user, done) => {
-  //console.log('In searizlize  '+ user.email);
+  console.log('In searizlize  '+ Object.keys(user));
   //   done(null, user.email);
   done(null,user);
 });
 
 passport.deserializeUser((user, done) => {
-    //  console.log('In desearizlize  '+ Object.values(email));
-    // var sql_select='SELECT * from users where email=\''+email+'\'';
+     console.log('In desearizlize  '+ Object.values(user));
+    // var sql_select='SELECT * from users where email=\''+user.email+'\'';
+    // console.log(sql_select)
     // db.query(sql_select, function (err, result) {
     //     if(err)
     //       console.log('couldnt find user');
     //     console.log('desiralize res= '+result);
-    //     done(null,result);
+    //     done(null,result[0]);
     // })
    // done(null,user);
 
@@ -53,13 +54,19 @@ db.query(sql_select,function(err,user){
 
           }
           else{
-             newUser.email = result.email;
-             newUser.fname = result.fname;
-             newUser.lname = result.lname;
-             newUser.profile_pic_url = result.profile_pic_url;
+             // newUser.email = result.email;
+             // newUser.fname = result.fname;
+             // newUser.lname = result.lname;
+             // newUser.profile_pic_url = result.profile_pic_url;
              console.log("record inserted");
-             return done(null,newUser);
-
+             db.query(sql_select,function(err,user){
+                if(err || user.length<1)
+                    console.log('error selecting new user');
+                 else{
+                     console.log("result=  "+ (user));
+                    return done(null,user[0]);
+                 } 
+                });
             // return done(null)
           }
         });
