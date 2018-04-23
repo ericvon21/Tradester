@@ -14,7 +14,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((user, done) => {
-     console.log('In desearizlize  '+ Object.values(user));
+    // console.log('In desearizlize  '+ Object.values(user));
     // var sql_select='SELECT * from users where email=\''+user.email+'\'';
     // console.log(sql_select)
     // db.query(sql_select, function (err, result) {
@@ -38,7 +38,7 @@ passport.use(
         clientSecret:key.google.clientSecret
     }, (accessToken,refreshToken,profile, done) => {
         console.log("heloo");
-        console.log(profile);
+     //   console.log(profile);
         var sql_select='SELECT * from users where email=\''+profile.emails[0].value+'\'';
         var sql_insert='INSERT into users(email,fname,lname,profile_pic_url) VALUES (\''+profile.emails[0].value+'\',\''
         +profile.name.familyName+'\',\''+profile.name.givenName+'\',\''+profile.photos[0].value+'\')';

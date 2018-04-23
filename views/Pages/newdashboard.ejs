@@ -236,9 +236,14 @@
                     <p class="w3-center"><img src="<%=user.profile_pic_url%>" class="w3-circle"
                                               style="height:106px;width:106px" alt="Avatar"></p>
                     <hr>
-                    <p><i class="fa fa-smile-o fa-fw w3-margin-right w3-text-theme"></i> Completed Trades : 0 </p>
+                    <p><i class="fa fa-smile-o fa-fw w3-margin-right w3-text-theme"></i> Completed Trades : <%=completed_trades%> </p>
                     <p><i class="fa fa-meh-o fa-fw w3-margin-right w3-text-theme"></i>   Pending Trades&nbsp &nbsp&nbsp&nbsp&nbsp: <%=pending_req%></p>
-                    <p><i class="fa fa-tasks fa-fw w3-margin-right w3-text-theme"></i>   Total Trades&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <%=pending_req%></p>
+                    <p><i class="fa fa-chain fa-fw w3-margin-right w3-text-theme"></i> Trade Requests &nbsp&nbsp&nbsp&nbsp&nbsp:
+                        <%if (notification.length== undefined){%>0
+                        <%}else{ %> <%=notification.length%>
+                        <%}%>
+                    <p><i class="fa fa-tasks fa-fw w3-margin-right w3-text-theme"></i>   Total Trades&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <%=pending_req + completed_trades%></p>
+
                 </div>
             </div>
             <br>

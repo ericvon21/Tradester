@@ -1,4 +1,9 @@
 <div class="w3-top">
+    <script>
+        if (notification.length==undefined){
+            var len =0;
+        }
+    </script>
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
         <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
            href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
@@ -9,13 +14,18 @@
                     class="fa fa-envelope"></i></a>
 
         <div class="w3-dropdown-hover w3-hide-small">
-            <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span
-                        class="w3-badge w3-right w3-small w3-green"><%=notification%></span></button>
+            <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i>
+                <span class="w3-badge w3-right w3-small w3-green">
+                    <%if (notification.length== undefined){%>0
+                    <%}else{ %> <%=notification.length%>
+                    <%}%>
+                </span>
+            </button>
             <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
                 <%var i =0%>
-                <%if (requser != null){%>
-                <%while (i<requser.length){%>
-                    <a href="/trade_page" class="w3-bar-item w3-button">Trade request from <%=requser[i].lname%></a>
+                <%if (notification != null){%>
+                <%while (i<notification.length){%>
+                    <a href="/trade_page" class="w3-bar-item w3-button">Trade request from <%=notification[i].from_name%></a>
                 <%i++}%>
                 <%}else {%>
                     <a href="#" class="w3-bar-item w3-button">No notifications yet</a>
