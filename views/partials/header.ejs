@@ -10,11 +10,16 @@
 
         <div class="w3-dropdown-hover w3-hide-small">
             <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span
-                        class="w3-badge w3-right w3-small w3-green">3</span></button>
+                        class="w3-badge w3-right w3-small w3-green"><%=notification%></span></button>
             <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-                <a href="#" class="w3-bar-item w3-button">Trade request from <"trader"></a>
-                <a href="#" class="w3-bar-item w3-button">Trade request from <"trader"></a>
-                <a href="#" class="w3-bar-item w3-button">Trade request from <"trader"></a>
+                <%var i =0%>
+                <%if (requser != null){%>
+                <%while (i<requser.length){%>
+                    <a href="/trade_page" class="w3-bar-item w3-button">Trade request from <%=requser[i].lname%></a>
+                <%i++}%>
+                <%}else {%>
+                    <a href="#" class="w3-bar-item w3-button">No notifications yet</a>
+                <%}%>
             </div>
 
         </div>
