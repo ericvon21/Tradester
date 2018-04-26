@@ -178,81 +178,82 @@ app.get('/delete_item', function(req,res){
 });
 
 app.get('/trade_item',function(req,res){
-    var from_name;
-    var from_item_id = 18;
-    var from_email;
-    var from_pic_url;
-    var from_item_name;
+   // console.log(values(req));
+    // var from_name;
+    // var from_item_id = 5;
+    // var from_email;
+    // var from_pic_url;
+    // var from_item_name;
 
-    var to_name;
-    var to_email;
-    var to_item_id = 31;
-    var to_pic_url;
-    var to_item_name;
+    // var to_name;
+    // var to_email;
+    // var to_item_id = 9;
+    // var to_pic_url;
+    // var to_item_name;
 
-    var from_query1 = "select * from items where item_id="+ from_item_id;
-    var from_query2 = "select * from users where email=\"";
-    var to_query1 = "select * from items where item_id="+ to_item_id;
-    var to_query2 = "select * from users where email=\"";
+    // var from_query1 = "select * from items where item_id="+ from_item_id;
+    // var from_query2 = "select * from users where email=\"";
+    // var to_query1 = "select * from items where item_id="+ to_item_id;
+    // var to_query2 = "select * from users where email=\"";
 
-    if (from_item_id == to_item_id){
-        noticheck(req,function(result){
-          //  res.render('Pages/errorpage',{user:req.user,notification:result,perror:"Cannot trade with own item"});
-        //    return;
-        });
-    }
+    // if (from_item_id == to_item_id){
+    //     noticheck(req,function(result){
+    //       //  res.render('Pages/errorpage',{user:req.user,notification:result,perror:"Cannot trade with own item"});
+    //     //    return;
+    //     });
+    // }
 
-    db.query(from_query1,function(err,from_info){
-        from_email = from_info[0].email;
-        from_pic_url = from_info[0].pic_url;
-        from_item_name = from_info[0].item_name;
-        from_query2 += from_email + "\"";
+    // db.query(from_query1,function(err,from_info){
+    //     from_email = from_info[0].email;
+    //     from_pic_url = from_info[0].pic_url;
+    //     from_item_name = from_info[0].item_name;
+    //     from_query2 += from_email + "\"";
 
-        db.query(from_query2,function(err,from_info2){
-            from_name = from_info2[0].lname;
+    //     db.query(from_query2,function(err,from_info2){
+    //         from_name = from_info2[0].lname;
 
-            db.query(to_query1,function(err,to_info){
-                to_email = to_info[0].email;
-                to_pic_url = to_info[0].pic_url;
-                to_item_name = to_info[0].item_name;
-                to_query2 += to_email + "\"";
+    //         db.query(to_query1,function(err,to_info){
+    //             to_email = to_info[0].email;
+    //             to_pic_url = to_info[0].pic_url;
+    //             to_item_name = to_info[0].item_name;
+    //             to_query2 += to_email + "\"";
 
-                db.query(to_query2,function (err, to_info2) {
-                    to_name = to_info2[0].lname;
+    //             db.query(to_query2,function (err, to_info2) {
+    //                 to_name = to_info2[0].lname;
 
-                    var query = "insert into item_relation(from_itemid,to_itemid,from_email,to_email,traded,from_pic_url," +
-                        "to_pic_url,from_name,to_name,from_item_name,to_item_name)" +
-                        " values ("+ from_item_id + "," + to_item_id + ",\"" +from_email+"\",\""+to_email+"\",0,\""
-                        +from_pic_url+"\",\""+to_pic_url+"\",\"" +
-                        from_name+ "\",\""+ to_name+"\",\""+from_item_name+ "\",\""+ to_item_name+"\")";
+    //                 var query = "insert into item_relation(from_itemid,to_itemid,from_email,to_email,traded,from_pic_url," +
+    //                     "to_pic_url,from_name,to_name,from_item_name,to_item_name)" +
+    //                     " values ("+ from_item_id + "," + to_item_id + ",\"" +from_email+"\",\""+to_email+"\",0,\""
+    //                     +from_pic_url+"\",\""+to_pic_url+"\",\"" +
+    //                     from_name+ "\",\""+ to_name+"\",\""+from_item_name+ "\",\""+ to_item_name+"\")";
 
-                    db.query(query,function(err,item){
-                        if(err)
-                        {
-                            console.log('some error in item');
-                            console.log(err);
-                        }else {
+    //                 db.query(query,function(err,item){
+    //                     if(err)
+    //                     {
+    //                         console.log('some error in item');
+    //                         console.log(err);
+    //                     }else {
 
-                            var query = "SELECT * FROM mydb.item_relation where traded=0 and to_email=\"" + req.user.email + "\"";
-                            db.query(query, function (err, result1) {
-                                if (err) {
-                                    console.log(err);
-                                } else {
-                                    noticheck(req, function (result) {
-                                        res.render('Pages/trade_page', {
-                                            user: req.user,
-                                            notification: result,
-                                            trade_items: result1
-                                        });
-                                    });
-                                }
-                            });
-                        }
-                    })
-                })
-            });
-        })
-    });
+    //                         var query = "SELECT * FROM mydb.item_relation where traded=0 and to_email=\"" + req.user.email + "\"";
+    //                         db.query(query, function (err, result1) {
+    //                             if (err) {
+    //                                 console.log(err);
+    //                             } else {
+    //                                 noticheck(req, function (result) {
+    //                                     res.render('Pages/trade_page', {
+    //                                         user: req.user,
+    //                                         notification: result,
+    //                                         trade_items: result1
+    //                                     });
+    //                                 });
+    //                             }
+    //                         });
+    //                     }
+    //                 })
+    //             })
+    //         });
+    //     })
+    // });
 });
 
 app.get('/search',function(req,res){
@@ -267,6 +268,8 @@ app.get('/search',function(req,res){
 
     where+='item_name REGEXP\''+search_tokens[tokens_size-1]+'\'';
     var sql_select='SELECT * from items where '+where + ' and is_trade=0 and not email=\''+ req.user.email +' \'';
+     var sql_select_user_items='SELECT * from items where is_trade=0 and email=\''+req.user.email+'\'';
+
     console.log('sql search= '+sql_select);
 
     db.query(sql_select,function(err,item){
@@ -285,7 +288,17 @@ app.get('/search',function(req,res){
             return;
         }
         noticheck(req,function(result){
-            res.render('Pages/all_items',{item:item,user:req.user,search:true,notification:result});
+             db.query(sql_select_user_items,function(err,user_items){
+                      if(err){
+                        console.log("s error");
+                         res.render('Pages/all_items',{item:item,user:req.user,search:true,notification:result})
+                }
+             else
+             {
+                console.log("here "+user_items);
+            res.render('Pages/all_items',{item:item,user:req.user,search:true,notification:result,user_items:user_items});
+        }
+    });
         });
     });
 

@@ -247,6 +247,16 @@
     background-size:     cover;
 }
 
+.imgTwo {
+    position: relative;
+    float: left;
+    width:  50px;
+    height: 50px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
 </style>
 
 <body class="w3-theme-l5">
@@ -278,8 +288,35 @@
         <div>
           <%if (search == true){%>
           <form  method="get" action="/trade_item">
-            <button class="w3-button w3-block w3-green w3-section" style="  opacity: 0.8;" type="submit" id="trade_item" name="trade_item" value="<%=item[i].item_id%>" > Trade Item <i class="fa fa-check"></i></button>
+            <button class="w3-button w3-block w3-green w3-section" style="  opacity: 0.8;" type="submit" id="trade_item" name="trade_item" value="<%=item[i].item_id%>" onclick="document.getElementById('id2').style.display='block'" > Trade Item <i class="fa fa-check"></i></button>
           </form>
+                    <div id="id2" class="modal" >
+                        <form class="modal-content animate" enctype="multipart/form-data" method="post"
+                              action="/action_page.php">
+                            <div class="imgcontainer">
+                                <span onclick="document.getElementById('id2').style.display='none'" class="close"
+                                      title="Close Modal">&times;</span>
+                            </div>
+
+                            <div class="container" style>
+                                <%if (user_items.length < 1){ %>>
+                     <h1 style="align-self: center">Seems like you don't have any posts yet.. Start by adding some items for trading </h1>
+                             <%}else{ %>
+                                   <% var j = 0; %>
+                              <%while (j < user_items.length) { %>
+                                  <% var image = user_items[j].pic_url%>
+                          <img src="<%=image%>" class="imgTwo" alt="Sandwich" type="submit" value="<%user_items[j]%>" style="width: 100%">
+                           <div class="image"><%=user_items[j].item_name%></div>   
+                               <p><%=user_items[j].description%></p>
+                                <form action="/trade_ite" method="GET">
+                           <button class="w3-button w3-block w3-green w3-section" style="  opacity: 0.8;" type="submit" id="trade_item" name="trade_item" >Trade<i class="fa fa-check"></i></button>
+                                </form>
+                                   <% j++ }%>
+                                   <%}%>
+                                <img class="zoom" id="output" style="width: 2.5%;position: relative"/>
+                            </div>
+                        </form>
+                    </div>
           <%} else{%>
           <form  method="get" action="/delete_item">
             <button class="w3-button w3-block w3-red w3-section" style="  opacity: 0.8;" type="submit" id="trade_item" name="trade_item" value="<%=item[i].item_id%>" > Remove Item <i class="fa fa-remove"></i></button>
@@ -386,6 +423,18 @@
 
 <!-- End page content -->
 </div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById('id2');
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
 
 <script>
 // Script to open and close sidebar
