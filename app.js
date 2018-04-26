@@ -178,82 +178,87 @@ app.get('/delete_item', function(req,res){
 });
 
 app.get('/trade_item',function(req,res){
-   // console.log(values(req));
-    // var from_name;
-    // var from_item_id = 5;
-    // var from_email;
-    // var from_pic_url;
-    // var from_item_name;
 
-    // var to_name;
-    // var to_email;
-    // var to_item_id = 9;
-    // var to_pic_url;
-    // var to_item_name;
+    var get_query = req.query.trade_item;
+    var split = get_query.split("A");
+    //console.log(split);
 
-    // var from_query1 = "select * from items where item_id="+ from_item_id;
-    // var from_query2 = "select * from users where email=\"";
-    // var to_query1 = "select * from items where item_id="+ to_item_id;
-    // var to_query2 = "select * from users where email=\"";
 
-    // if (from_item_id == to_item_id){
-    //     noticheck(req,function(result){
-    //       //  res.render('Pages/errorpage',{user:req.user,notification:result,perror:"Cannot trade with own item"});
-    //     //    return;
-    //     });
-    // }
+    var from_name;
+    var from_item_id = split[0];
+    var from_email;
+    var from_pic_url;
+    var from_item_name;
 
-    // db.query(from_query1,function(err,from_info){
-    //     from_email = from_info[0].email;
-    //     from_pic_url = from_info[0].pic_url;
-    //     from_item_name = from_info[0].item_name;
-    //     from_query2 += from_email + "\"";
+    var to_name;
+    var to_email;
+    var to_item_id = split[1];
+    var to_pic_url;
+    var to_item_name;
 
-    //     db.query(from_query2,function(err,from_info2){
-    //         from_name = from_info2[0].lname;
+    var from_query1 = "select * from items where item_id="+ from_item_id;
+    var from_query2 = "select * from users where email=\"";
+    var to_query1 = "select * from items where item_id="+ to_item_id;
+    var to_query2 = "select * from users where email=\"";
 
-    //         db.query(to_query1,function(err,to_info){
-    //             to_email = to_info[0].email;
-    //             to_pic_url = to_info[0].pic_url;
-    //             to_item_name = to_info[0].item_name;
-    //             to_query2 += to_email + "\"";
+    if (from_item_id == to_item_id){
+        noticheck(req,function(result){
+          //  res.render('Pages/errorpage',{user:req.user,notification:result,perror:"Cannot trade with own item"});
+        //    return;
+        });
+    }
 
-    //             db.query(to_query2,function (err, to_info2) {
-    //                 to_name = to_info2[0].lname;
+    db.query(from_query1,function(err,from_info){
+        from_email = from_info[0].email;
+        from_pic_url = from_info[0].pic_url;
+        from_item_name = from_info[0].item_name;
+        from_query2 += from_email + "\"";
 
-    //                 var query = "insert into item_relation(from_itemid,to_itemid,from_email,to_email,traded,from_pic_url," +
-    //                     "to_pic_url,from_name,to_name,from_item_name,to_item_name)" +
-    //                     " values ("+ from_item_id + "," + to_item_id + ",\"" +from_email+"\",\""+to_email+"\",0,\""
-    //                     +from_pic_url+"\",\""+to_pic_url+"\",\"" +
-    //                     from_name+ "\",\""+ to_name+"\",\""+from_item_name+ "\",\""+ to_item_name+"\")";
+        db.query(from_query2,function(err,from_info2){
+            from_name = from_info2[0].lname;
 
-    //                 db.query(query,function(err,item){
-    //                     if(err)
-    //                     {
-    //                         console.log('some error in item');
-    //                         console.log(err);
-    //                     }else {
+            db.query(to_query1,function(err,to_info){
+                to_email = to_info[0].email;
+                to_pic_url = to_info[0].pic_url;
+                to_item_name = to_info[0].item_name;
+                to_query2 += to_email + "\"";
 
-    //                         var query = "SELECT * FROM mydb.item_relation where traded=0 and to_email=\"" + req.user.email + "\"";
-    //                         db.query(query, function (err, result1) {
-    //                             if (err) {
-    //                                 console.log(err);
-    //                             } else {
-    //                                 noticheck(req, function (result) {
-    //                                     res.render('Pages/trade_page', {
-    //                                         user: req.user,
-    //                                         notification: result,
-    //                                         trade_items: result1
-    //                                     });
-    //                                 });
-    //                             }
-    //                         });
-    //                     }
-    //                 })
-    //             })
-    //         });
-    //     })
-    // });
+                db.query(to_query2,function (err, to_info2) {
+                    to_name = to_info2[0].lname;
+
+                    var query = "insert into item_relation(from_itemid,to_itemid,from_email,to_email,traded,from_pic_url," +
+                        "to_pic_url,from_name,to_name,from_item_name,to_item_name)" +
+                        " values ("+ from_item_id + "," + to_item_id + ",\"" +from_email+"\",\""+to_email+"\",0,\""
+                        +from_pic_url+"\",\""+to_pic_url+"\",\"" +
+                        from_name+ "\",\""+ to_name+"\",\""+from_item_name+ "\",\""+ to_item_name+"\")";
+
+                    db.query(query,function(err,item){
+                        if(err)
+                        {
+                            console.log('some error in item');
+                            console.log(err);
+                        }else {
+
+                            var query = "SELECT * FROM mydb.item_relation where traded=0 and to_email=\"" + req.user.email + "\"";
+                            db.query(query, function (err, result1) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    noticheck(req, function (result) {
+                                        res.render('Pages/trade_page', {
+                                            user: req.user,
+                                            notification: result,
+                                            trade_items: result1
+                                        });
+                                    });
+                                }
+                            });
+                        }
+                    })
+                })
+            });
+        })
+    });
 });
 
 app.get('/search',function(req,res){
@@ -330,15 +335,21 @@ app.post('/items_view',function(req,res){
 app.get('/trade_page',function(req,res){
 
    noticheck(req,function(result){
+
        res.render('Pages/trade_page',{user:req.user,notification:result ,trade_items:result});
    });
 
 });
 
 app.get('/complete_trade',function(req,res){
-    var from_item_id = 18;
-    var to_item_id = 31;
+    var get_query = req.query.trade_item;
+    var split = get_query.split("A");
 
+
+    var from_item_id = split[0];
+    var to_item_id = split[1];
+
+    console.log(req.query.trade_item);
     var query="update item_relation set traded=1 where from_itemid="+ from_item_id + " and to_itemid=" + to_item_id;
     var query2="update mydb.items set is_trade=1 where item_id="+ from_item_id +" or item_id=" + to_item_id;
     db.query(query,function(err,result){
@@ -359,8 +370,14 @@ app.get('/complete_trade',function(req,res){
 });
 
 app.get('/delete_trade',function(req,res){
-   var from_item_id = 11;
-   var to_item_id = 12;
+
+    var get_query = req.query.trade_item;
+    var split = get_query.split("A");
+
+    var from_item_id = split[0];
+    var to_item_id = split[1];
+   // var from_item_id = 11;
+   // var to_item_id = 12;
    var query="delete from mydb.item_relation where from_itemid="+ from_item_id +" or to_itemid=" + to_item_id;
    db.query(query,function(err,result){
         if (err){
@@ -372,9 +389,9 @@ app.get('/delete_trade',function(req,res){
    });
 });
 
-app.get('*', function(req, res) {
-    res.redirect('/');
-});
+// app.get('*', function(req, res) {
+//     res.redirect('/');
+// });
 
 
 

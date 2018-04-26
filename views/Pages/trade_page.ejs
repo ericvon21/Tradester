@@ -27,14 +27,18 @@
 
         <img src="<%=trade_items[i].from_pic_url%>" style="width:100%;max-height: 400px;max-width: 200px"  alt="Concrete meets bricks">
         <form  method="get" action="/complete_trade">
-        <button class="w3-button w3-block w3-green w3-section" style="  opacity: 0.8;" type="submit" id="trade_item" name="trade_item" > Trade Item <i class="fa fa-check"></i></button>
+        <button class="w3-button w3-block w3-green w3-section" style="  opacity: 0.8;" type="submit" id="trade_item" name="trade_item"
+        value="<%=trade_items[i].from_itemid%>A<%=trade_items[i].to_itemid%>"
+        > Trade Item <i class="fa fa-check"></i></button>
         </form>
-    </div>
+        </div>
 
     <div class="w3-half">
         <img src="<%=trade_items[i].to_pic_url%>" style="width:100%;max-height: 400px;max-width: 200px"  alt="Concrete meets bricks">
         <form  method="get" action="/delete_trade">
-            <button class="w3-button w3-block w3-red w3-section" style="  opacity: 0.8;" type="submit" id="trade_item" name="trade_item" > Cancel trade <i class="fa fa-remove"></i></button>
+            <button class="w3-button w3-block w3-red w3-section" style="  opacity: 0.8;" type="submit" id="trade_item"
+                    value="<%=trade_items[i].from_itemid%>A<%=trade_items[i].to_itemid%>"
+                    name="trade_item" > Cancel trade <i class="fa fa-remove"></i></button>
         </form>
     </div>
         </div>

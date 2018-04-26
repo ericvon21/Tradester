@@ -287,30 +287,41 @@
       <div class="w3-row">
         <div>
           <%if (search == true){%>
-          <form  method="get" action="/trade_item">
+          <!--<form  method="get" action="/trade_item">-->
             <button class="w3-button w3-block w3-green w3-section" style="  opacity: 0.8;" type="submit" id="trade_item" name="trade_item" value="<%=item[i].item_id%>" onclick="document.getElementById('id2').style.display='block'" > Trade Item <i class="fa fa-check"></i></button>
-          </form>
+          <!--</form>-->
                     <div id="id2" class="modal" >
-                        <form class="modal-content animate" enctype="multipart/form-data" method="post"
-                              action="/action_page.php">
+                        <form class="modal-content animate" enctype="multipart/form-data"
+                              method="get"
+                              action="/trade_item">
+
                             <div class="imgcontainer">
                                 <span onclick="document.getElementById('id2').style.display='none'" class="close"
                                       title="Close Modal">&times;</span>
                             </div>
 
                             <div class="container" style>
-                                <%if (user_items.length < 1){ %>>
-                     <h1 style="align-self: center">Seems like you don't have any posts yet.. Start by adding some items for trading </h1>
-                             <%}else{ %>
-                                   <% var j = 0; %>
-                              <%while (j < user_items.length) { %>
-                                  <% var image = user_items[j].pic_url%>
-                          <img src="<%=image%>" class="imgTwo" alt="Sandwich" type="submit" value="<%user_items[j]%>" style="width: 100%">
-                           <div class="image"><%=user_items[j].item_name%></div>   
-                               <p><%=user_items[j].description%></p>
-                                <form action="/trade_ite" method="GET">
-                           <button class="w3-button w3-block w3-green w3-section" style="  opacity: 0.8;" type="submit" id="trade_item" name="trade_item" >Trade<i class="fa fa-check"></i></button>
-                                </form>
+                                <%if (user_items.length < 1){ %>
+                                <h1 style="align-self: center">Seems like you don't have any posts yet.. Start by adding some items for trading </h1>
+
+                                <%}else{ %>
+
+                                <% var j = 0; %>
+                                <%while (j < user_items.length) { %>
+
+                                <% var image = user_items[j].pic_url%>
+
+                                <img src="<%=image%>" class="imgTwo" alt="Sandwich" type="submit" value="<%user_items[j]%>" style="width: 100%">
+
+                                <div class="image"><%=user_items[j].item_name%></div>
+                                    <p><%=user_items[j].description%></p>
+
+                                <!--<form action="/trade_ite" method="post">-->
+
+                                <button class="w3-button w3-block w3-green w3-section" style="  opacity: 0.8;"
+                                        type="submit" id="trade_item" name="trade_item" value="<%=item[i].item_id%>A<%=user_items[j].item_id%>" >Trade<i class="fa fa-check"></i></button>
+
+                                <!--</form>-->
                                    <% j++ }%>
                                    <%}%>
                                 <img class="zoom" id="output" style="width: 2.5%;position: relative"/>
