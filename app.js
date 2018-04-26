@@ -40,7 +40,7 @@ var suggestions = ["Did you know that now you can trade items with your friends?
                     "Be on the lookout for more updates soon to come"];
 
 function noticheck(req,cb){
-    var query = "select * from item_relation where to_email=\"" +req.user.email+"\" and traded=0";
+    var query = "select * from item_relation where from_email=\"" +req.user.email+"\" and traded=0";
 
     db.query(query,function (err,result) {
         if (err){
@@ -178,7 +178,7 @@ app.get('/delete_item', function(req,res){
 });
 
 app.get('/trade_item',function(req,res){
-
+    
     var get_query = req.query.trade_item;
     var split = get_query.split("A");
     //console.log(split);

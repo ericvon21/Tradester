@@ -25,7 +25,7 @@
                 <%var i =0%>
                 <%if (notification != null){%>
                 <%while (i<notification.length){%>
-                    <a href="/trade_page" class="w3-bar-item w3-button">Trade request from <%=notification[i].from_name%></a>
+                    <a href="/trade_page" class="w3-bar-item w3-button">Trade request from <%=notification[i].to_name%></a>
                 <%i++}%>
                 <%}else {%>
                     <a href="#" class="w3-bar-item w3-button">No notifications yet</a>
