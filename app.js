@@ -73,7 +73,7 @@ app.get('/profile',function(req,res){
 	}
     var sql_query='SELECT * from items where is_trade=0 and email=\''+req.user.email+'\'';
     var sql_select='SELECT * from items,users where items.email=users.email and items.is_trade=0 and not items.email=\''+req.user.email+'\' ORDER BY item_id DESC';
-    var sql_completed_trades ='Select * from item_relation where from_email ="'+req.user.email+'"and traded=1';
+    var sql_completed_trades ='Select * from item_relation where from_email ="'+req.user.email+'" or to_email="'+req.user.email+'" and traded=1';
     var random_suggestion_num = random(suggestions.length-1);
     var num_req = 0;
 
@@ -389,9 +389,33 @@ app.get('/delete_trade',function(req,res){
    });
 });
 
-// app.get('*', function(req, res) {
-//     res.redirect('/');
-// });
+app.get('/messages', function(req,res){
+    var to_query = "select * from item_relation where to_email='" + req.user.email+"'";
+    var from_query = "select * from item_relation where from_email='" + req.user.email+"'";
+
+    db.query(to_query,function(err,to_items){
+        console.log("1"+to_items);
+        if (err) console.log(err);
+        db.query(from_query,function (err,from_items) {
+            if (err) console.log(err);
+            console.log(from_items);
+            noticheck(req,function(result){
+                res.render('Pages/errorpage',{user:req.user, perror:"",notification:result,from_items:from_items,to_items:to_items});
+            });
+
+        })
+
+
+    });
+
+   console.log("Hey");
+
+});
+
+
+app.get('*', function(req, res) {
+    res.redirect('/');
+});
 
 
 
