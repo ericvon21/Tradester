@@ -33,13 +33,13 @@
         <p>
                 <h6>  <strong><%=from_items[i].to_name%>'s <%=from_items[i].from_item_name%></strong>
             &nbsp
-            <!--<img class="zoom" src="<%=from_items[i].from_pic_url%>" id="output" style="width: 20px;position: relative"/>-->
+            <img class="zoom" src="<%=from_items[i].from_pic_url%>" id="output" style="width: 50px; height: 50px; position: relative"/>
 
 
-            <!--&nbsp&nbsp-->
+            &nbsp&nbsp
             for your
             <strong> <%=from_items[i].to_item_name%> </strong>
-            <!--<img class="zoom" src="<%=from_items[i].to_pic_url%>" id="output" style="width: 20px;position: relative"/>-->
+            <img class="zoom" src="<%=from_items[i].to_pic_url%>" id="output" style="width: 50px; height:50px; position: relative"/>
             you can contact them at <u><%=from_items[i].to_email%> </u>
 
 
@@ -54,16 +54,17 @@
                 <%var i = 0;  while(i < to_items.length){ %>
                 <p>
                 <h6>  <strong><%=to_items[i].from_name%>'s <%=to_items[i].from_item_name%></strong>
-                <!--&nbsp-->
-                <!--<img class="zoom" src="<%=to_items[i].from_pic_url%>" id="output" style="width: 20px;position: relative"/>-->
-                <!--&nbsp&nbsp-->
+                        at 
+                         <u><%=to_items[i].from_email%> </u>
+                &nbsp
+                <img class="zoom" src="<%=to_items[i].from_pic_url%>" id="output" style="width: 50px;height:50px;position: relative"/>
+                &nbsp&nbsp
 
 
 
             for your <strong> <%=to_items[i].to_item_name%> </strong>
-            <!--<img class="zoom" src="<%=to_items[i].to_pic_url%>" id="output" style="width: 20px;position: relative"/>-->
-
-        </h6> </p>
+            &nbsp
+         </h6> </p>
                 <%i++}%>
 
 
