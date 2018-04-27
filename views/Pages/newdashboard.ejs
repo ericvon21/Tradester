@@ -148,6 +148,11 @@
         width: 80%; /* Could be more or less, depending on screen size */
     }
 
+    .relative {
+    position: relative;
+    border: 3px solid #73AD21;
+}
+
     /* The Close Button (x) */
     .close {
         position: absolute;
@@ -296,9 +301,9 @@
 
 
         <!-- Middle Column -->
-        <div class="w3-col m7" style="margin-top: -1.1%">
-            <%if (feed.length < 1){ %>>
-            <h1 style="align-self: center">Seems Like your friends haven't posted anything yet. Spread the word to see more posts!! </h1>
+        <div class="w3-col m6" style="margin-top: -1.1%">
+            <%if (feed.length < 1){ %>
+            <h1 class="relative">Hey, you don't have friends posting stuff :(</h1>
             <%}else{ %>
 
             <% var i = 0; %>
@@ -409,7 +414,7 @@
 
 <!-- Footer -->
 <footer class="w3-container w3-theme-d3 w3-padding-16">
-    <h5>Footer</h5>
+    <h5>Tradester™</h5>
 </footer>
 
 <!--<footer class="w3-container w3-theme-d5">-->
